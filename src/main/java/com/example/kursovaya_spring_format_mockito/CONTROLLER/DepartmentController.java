@@ -34,7 +34,7 @@ public class DepartmentController {
 
     @GetMapping("/{id}/employees")
     public Collection<Employee> getEmployeeesFromDepartment(@PathVariable("id") int departmentId) {
-        return departmentService.getEmployeeesFromDepartment(departmentId);
+        return departmentService.getEmployeesFromDepartment(departmentId);
     }
 
     @GetMapping("/{id}/salary/sum")
