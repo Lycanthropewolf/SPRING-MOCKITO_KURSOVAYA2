@@ -33,21 +33,25 @@ public class EmployeeService {
         this.employees.put(employee.getId(), employee);
         return employee;
     }
-    public int getSalarySum( ) {
-        return employees.values().stream().mapToInt(e ->  e.getSalary()).sum();
+
+    public int getSalarySum() {
+        return employees.values().stream().mapToInt(e -> e.getSalary()).sum();
     }
 
-    public Optional<Employee> getEmloyeeSalaryMax( ) {
-        return employees.values().stream().max(Comparator.comparingInt(Employee::getSalary));
+    public Employee getEmployeeSalaryMax() {
+        return employees.values().stream().max(Comparator.comparingInt(Employee::getSalary)).orElseThrow();
     }
-    public Optional<Employee> getEmloyeeSalaryMin( ) {
-        return employees.values().stream().min(Comparator.comparingInt(Employee::getSalary));
+
+    public Employee getEmployeeSalaryMin() {
+        return employees.values().stream().min(Comparator.comparingInt(Employee::getSalary)).orElseThrow();
     }
-    public List<Employee> getEmloyeeSalaryHigh( ) {
+
+
+    public List<Employee> getEmloyeeSalaryHigh() {
         double middle = employees.values().stream()
                 .mapToInt(Employee -> Employee.getSalary())
                 .average().orElse(0);
         return employees.values().stream()
-                .filter(e->e.getSalary()>middle).collect(Collectors.toList());
+                .filter(e -> e.getSalary() > middle).collect(Collectors.toList());
     }
 }
