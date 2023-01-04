@@ -38,13 +38,14 @@ public class EmployeeService {
         return employees.values().stream().mapToInt(e -> e.getSalary()).sum();
     }
 
-    public Optional<Employee> getEmloyeeSalaryMax() {
-        return employees.values().stream().max(Comparator.comparingInt(Employee::getSalary));
+    public Employee getEmployeeSalaryMax() {
+        return employees.values().stream().max(Comparator.comparingInt(Employee::getSalary)).orElseThrow();
     }
 
-    public Optional<Employee> getEmloyeeSalaryMin() {
-        return employees.values().stream().min(Comparator.comparingInt(Employee::getSalary));
+    public Employee getEmployeeSalaryMin() {
+        return employees.values().stream().min(Comparator.comparingInt(Employee::getSalary)).orElseThrow();
     }
+
 
     public List<Employee> getEmloyeeSalaryHigh() {
         double middle = employees.values().stream()
